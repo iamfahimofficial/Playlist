@@ -11,6 +11,7 @@
         :root {
             --theme-color: #ff9100; 
             --text-color: #ffffff;
+            --header-footer-bg: #080808;
             --card-bg: rgba(15, 15, 15, 0.95);
         }
 
@@ -29,22 +30,22 @@
             overflow-x: hidden;
         }
 
-        /* Responsive Navigation */
+        /* Responsive Fixed Navigation */
         .header-nav {
             position: fixed;
-            top: 15px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             display: flex;
             gap: 5px;
-            width: 98%;
+            width: 95%;
             justify-content: center;
-            flex-wrap: wrap; /* Mobile friendly wrapping */
+            flex-wrap: wrap;
         }
 
         .mini-btn {
-            padding: 6px 10px;
+            padding: 6px 12px;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
@@ -56,59 +57,52 @@
             transition: 0.3s;
         }
 
-        .mini-btn:hover {
-            background: var(--theme-color);
-            color: black;
-        }
+        .mini-btn:hover { background: var(--theme-color); color: black; box-shadow: 0 0 8px var(--theme-color); }
 
-        /* Heroes */
-        .hero {
-            height: 45vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Symmetrical Hero Header (Matches Footer) */
+        .hero-header {
+            background: var(--header-footer-bg);
+            padding: 70px 20px 40px 20px; /* Space for nav */
             text-align: center;
-            padding: 20px;
+            border-bottom: 1px solid #222;
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
+        .hero-header h1 {
+            font-size: clamp(1.8rem, 6vw, 3rem);
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
+        /* Section Titles - Compact Design */
         .section-hero {
-            padding: 60px 20px;
+            padding: 30px 20px 0px 20px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            margin-top: 20px;
         }
 
         .section-hero h2 {
-            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            font-size: 1.5rem;
             color: var(--theme-color);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            font-weight: 900;
         }
 
-        /* Grid Setup - Fully Responsive */
+        /* Mobile Friendly Playlist Grid */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
-            padding: 40px 15px;
-            max-width: 1300px;
+            padding: 30px 15px;
+            max-width: 1250px;
             margin: 0 auto;
         }
 
         @media (max-width: 480px) {
-            .grid-container {
-                grid-template-columns: 1fr; /* Full width on mobile */
-            }
+            .grid-container { grid-template-columns: 1fr; }
         }
 
         .song-card {
@@ -119,72 +113,68 @@
             transition: 0.3s ease;
         }
 
-        .song-card:hover {
-            border-color: var(--theme-color);
-            transform: translateY(-5px);
-        }
+        .song-card:hover { border-color: var(--theme-color); transform: translateY(-5px); }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* Perfect 16:9 YouTube ratio */
             height: 0;
+            background: #000;
         }
 
-        .video-wrapper iframe, .video-wrapper div {
+        .video-wrapper div {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        .song-info {
-            padding: 15px;
-            text-align: left;
-        }
+        .song-info { padding: 12px; text-align: left; border-top: 1px solid #222; }
+        .song-title { font-size: 13px; font-weight: 700; color: #fff; display: block; }
 
-        .song-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            display: block;
-        }
-
-        /* Footer */
+        /* Symmetrical Footer */
         footer {
-            background: #080808;
-            padding: 50px 20px;
+            background: var(--header-footer-bg);
+            padding: 40px 20px;
             text-align: center;
             border-top: 1px solid #222;
             font-size: 12px;
             color: #666;
-            margin-top: 60px;
         }
 
-        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        footer a { color: #888; text-decoration: none; margin: 0 10px; transition: 0.3s; }
+        footer a:hover { color: var(--theme-color); }
+        .copyright-tag { margin-top: 20px; opacity: 0.4; }
 
-        .copyright-tag {
-            margin-top: 25px;
-            opacity: 0.5;
-        }
-
-        section { scroll-margin-top: 70px; }
+        /* Smooth scroll anchor fix */
+        section { scroll-margin-top: 60px; }
     </style>
 </head>
 <body>
 
     <nav class="header-nav">
         <a href="index.html" class="mini-btn">HOME</a>
+        <a href="#attention" class="mini-btn">ATTENTION</a>
         <a href="#happiness" class="mini-btn">HAPPINESS</a>
         <a href="#emotions" class="mini-btn">EMOTIONS</a>
-        <a href="#attention" class="mini-btn">ATTENTION</a>
     </nav>
 
-    <header class="hero">
+    <header class="hero-header">
         <h1>FBIN'S PLAYLIST</h1>
     </header>
+
+    <section id="attention">
+        <div class="section-hero"><h2>ATTENTION</h2></div>
+        <div class="grid-container">
+            <div class="song-card">
+                <div class="video-wrapper"><div class="yt-player" data-video-id="VIDEO_ID_HERE"></div></div>
+                <div class="song-info"><span class="song-title">Attitude Track #1</span></div>
+            </div>
+            <div class="song-card">
+                <div class="video-wrapper"><div class="yt-player" data-video-id="VIDEO_ID_HERE"></div></div>
+                <div class="song-info"><span class="song-title">Attitude Track #2</span></div>
+            </div>
+        </div>
+    </section>
 
     <section id="happiness">
         <div class="section-hero"><h2>HAPPINESS</h2></div>
@@ -205,25 +195,11 @@
         <div class="grid-container">
             <div class="song-card">
                 <div class="video-wrapper"><div class="yt-player" data-video-id="ExAire1rQpQ"></div></div>
-                <div class="song-info"><span class="song-title">Emotional Track #1</span></div>
+                <div class="song-info"><span class="song-title">Soul Track #1</span></div>
             </div>
             <div class="song-card">
                 <div class="video-wrapper"><div class="yt-player" data-video-id="dQw4w9WgXcQ"></div></div>
-                <div class="song-info"><span class="song-title">Emotional Track #2</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="attention">
-        <div class="section-hero"><h2>ATTENTION</h2></div>
-        <div class="grid-container">
-            <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-video-id="your-attitude-video-id1"></div></div>
-                <div class="song-info"><span class="song-title">Attitude Track #1</span></div>
-            </div>
-            <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-video-id="your-attitude-video-id2"></div></div>
-                <div class="song-info"><span class="song-title">Attitude Track #2</span></div>
+                <div class="song-info"><span class="song-title">Soul Track #2</span></div>
             </div>
         </div>
     </section>
@@ -243,25 +219,22 @@
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var players = [];
-
         function onYouTubeIframeAPIReady() {
             var playerDivs = document.querySelectorAll('.yt-player');
-            playerDivs.forEach(function(div, index) {
+            playerDivs.forEach(function(div) {
                 var player = new YT.Player(div, {
                     videoId: div.getAttribute('data-video-id'),
-                    events: {
-                        'onStateChange': onPlayerStateChange
-                    }
+                    playerVars: { 'rel': 0, 'showinfo': 0 },
+                    events: { 'onStateChange': onPlayerStateChange }
                 });
                 players.push(player);
             });
         }
 
         function onPlayerStateChange(event) {
-            // If video starts playing (state = 1)
+            // When a video starts playing (state 1), pause all other players
             if (event.data == YT.PlayerState.PLAYING) {
                 players.forEach(function(player) {
-                    // Pause all other videos
                     if (player !== event.target) {
                         player.pauseVideo();
                     }
@@ -269,6 +242,5 @@
             }
         }
     </script>
-
 </body>
-                    </html>
+    </html>
