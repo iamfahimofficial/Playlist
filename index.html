@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200">
+    <meta name="viewport" content="width=1000">
     <title>FBin's Playlist | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -22,46 +22,50 @@
             background-size: cover;
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
-            width: 1200px; /* ফিক্সড উইডথ যাতে সব ব্রাউজারে ডেস্কটপ ভিউ থাকে */
-            margin: 0 auto;
+            scroll-behavior: smooth;
             overflow-x: hidden;
+            /* স্ক্রিনশটের গ্রিড ভিউ পাওয়ার জন্য উইডথ ফিক্সড করা হয়েছে */
+            width: 1000px;
+            margin: 0 auto;
         }
 
         /* Fixed Navigation */
         .header-nav {
             position: fixed;
-            top: 20px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             display: flex;
-            gap: 10px;
-            width: 100%;
+            gap: 5px;
+            width: 95%;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .mini-btn {
-            padding: 8px 20px;
+            padding: 6px 12px;
             background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 145, 0, 0.5);
+            border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: 0.3s;
         }
 
-        /* Hero Header */
-        .hero-header {
-            padding: 100px 20px 50px 20px;
+        /* Symmetrical Hero & Footer */
+        .hero-header, footer {
             background: var(--header-footer-bg);
             text-align: center;
+            border: 1px solid #222;
         }
+        .hero-header { padding: 70px 20px 40px 20px; border-top: none; }
+        footer { padding: 40px 20px; border-bottom: none; font-size: 14px; color: #666; width: 100%; }
 
         .hero-header h1 {
-            font-size: 55px;
+            font-size: 50px;
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
@@ -70,78 +74,52 @@
         }
 
         /* Section Titles */
-        .section-hero { padding: 40px 0 10px 0; text-align: center; }
-        .section-hero h2 { font-size: 24px; color: var(--theme-color); text-transform: uppercase; letter-spacing: 6px; }
+        .section-hero { padding: 30px 20px 0px 20px; text-align: center; }
+        .section-hero h2 { font-size: 26px; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; }
 
-        /* Grid Setup - Always 2 Columns */
+        /* Grid Setup - স্ক্রিনশটের মতো ২-কলাম ফিক্সড */
         .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            padding: 20px 40px;
-            max-width: 1100px;
+            gap: 20px;
+            padding: 30px 30px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         /* Song Card */
         .song-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 145, 0, 0.15);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 145, 0, 0.1);
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
-        /* Video Wrapper & Custom Overlay */
+        /* Video Wrapper - বড় লাল বাটনটি এখানেই থাকবে */
         .video-wrapper {
             position: relative;
             width: 100%;
             padding-top: 56.25%;
             background: #000;
-            cursor: pointer;
         }
 
-        .video-cover {
+        .video-wrapper .yt-player, 
+        .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
         }
 
-        /* Custom Small Play Button */
-        .custom-play-icon {
-            font-size: 60px;
-            color: rgba(255, 255, 255, 0.85);
-            transition: 0.3s;
-            z-index: 6;
-        }
+        .song-info { padding: 15px; text-align: left; border-top: 1px solid #222; }
+        .song-title { font-size: 14px; font-weight: 700; color: #fff; }
 
-        .video-wrapper:hover .custom-play-icon {
-            color: var(--theme-color);
-            transform: scale(1.1);
-        }
-
-        .yt-player {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        .song-info { padding: 15px; background: #0c0c0c; border-top: 1px solid #1a1a1a; }
-        .song-title { font-size: 16px; font-weight: 700; color: #fff; }
-
-        footer {
-            background: var(--header-footer-bg);
-            padding: 50px 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            border-top: 1px solid #111;
-        }
-        footer a { color: #888; text-decoration: none; margin: 0 15px; }
-        .copyright-tag { margin-top: 25px; opacity: 0.4; }
+        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        .copyright-tag { margin-top: 20px; opacity: 0.4; }
+        section { scroll-margin-top: 60px; }
     </style>
 </head>
 <body>
@@ -161,20 +139,14 @@
         <div class="section-hero"><h2>ATTENTION</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper" onclick="startVideo(this, 'LKXxNB8iAMo')">
-                    <div class="video-cover" style="background-image: url('https://img.youtube.com/vi/LKXxNB8iAMo/maxresdefault.jpg');">
-                        <i class="fas fa-play-circle custom-play-icon"></i>
-                    </div>
-                    <div class="yt-player"></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper" onclick="startVideo(this, 'o7In7se2Kl4')">
-                    <div class="video-cover" style="background-image: url('https://img.youtube.com/vi/o7In7se2Kl4/maxresdefault.jpg');">
-                        <i class="fas fa-play-circle custom-play-icon"></i>
-                    </div>
-                    <div class="yt-player"></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
@@ -185,22 +157,34 @@
         <div class="section-hero"><h2>HAPPINESS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper" onclick="startVideo(this, 'pd1flClqNPc')">
-                    <div class="video-cover" style="background-image: url('https://img.youtube.com/vi/pd1flClqNPc/maxresdefault.jpg');">
-                        <i class="fas fa-play-circle custom-play-icon"></i>
-                    </div>
-                    <div class="yt-player"></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper" onclick="startVideo(this, '-Hj-4hqUaaI')">
-                    <div class="video-cover" style="background-image: url('https://img.youtube.com/vi/-Hj-4hqUaaI/maxresdefault.jpg');">
-                        <i class="fas fa-play-circle custom-play-icon"></i>
-                    </div>
-                    <div class="yt-player"></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #2</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="emotions">
+        <div class="section-hero"><h2>EMOTIONS</h2></div>
+        <div class="grid-container">
+            <div class="song-card">
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div>
+                </div>
+                <div class="song-info"><span class="song-title">Deep Emotions #1</span></div>
+            </div>
+            <div class="song-card">
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div>
+                </div>
+                <div class="song-info"><span class="song-title">Deep Emotions #2</span></div>
             </div>
         </div>
     </section>
@@ -214,47 +198,41 @@
     </footer>
 
     <script>
+        function extractVideoID(url) {
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var match = url.match(regExp);
+            return (match && match[7].length == 11) ? match[7] : false;
+        }
+
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        var activePlayers = [];
-
-        function startVideo(container, videoId) {
-            // হাইড কভার
-            container.querySelector('.video-cover').style.display = 'none';
-            
-            var playerDiv = container.querySelector('.yt-player');
-            var player = new YT.Player(playerDiv, {
-                height: '100%',
-                width: '100%',
-                videoId: videoId,
-                playerVars: { 
-                    'autoplay': 1, 
-                    'modestbranding': 1, 
-                    'rel': 0, 
-                    'showinfo': 0, 
-                    'iv_load_policy': 3 
-                },
-                events: {
-                    'onStateChange': function(event) {
-                        if (event.data == YT.PlayerState.PLAYING) {
-                            stopOtherVideos(player);
-                        }
-                    }
+        var players = [];
+        function onYouTubeIframeAPIReady() {
+            var playerDivs = document.querySelectorAll('.yt-player');
+            playerDivs.forEach(function(div) {
+                var videoUrl = div.getAttribute('data-url');
+                var videoId = extractVideoID(videoUrl);
+                if (videoId) {
+                    var player = new YT.Player(div, {
+                        videoId: videoId,
+                        playerVars: { 'modestbranding': 1, 'rel': 0 },
+                        events: { 'onStateChange': onPlayerStateChange }
+                    });
+                    players.push(player);
                 }
             });
-            activePlayers.push(player);
         }
 
-        function stopOtherVideos(currentPlayer) {
-            activePlayers.forEach(function(p) {
-                if (p !== currentPlayer && p.pauseVideo) {
-                    p.pauseVideo();
-                }
-            });
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                players.forEach(function(player) {
+                    if (player !== event.target) { player.pauseVideo(); }
+                });
+            }
         }
     </script>
 </body>
-    </html>
+        </html>
