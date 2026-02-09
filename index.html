@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280, initial-scale=0.3, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FBin's Playlist | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -11,17 +11,11 @@
         :root {
             --theme-color: #ff9100; 
             --text-color: #ffffff;
-            --header-footer-bg: #080808;
-            --card-bg: rgba(15, 15, 15, 0.95);
+            --header-footer-bg: #000000;
+            --card-bg: rgba(20, 20, 20, 0.95);
         }
 
-        /* অটো জুম এবং টেক্সট রিসাইজ বন্ধ করার জন্য */
-        html {
-            -webkit-text-size-adjust: 100%;
-            touch-action: pan-x pan-y;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background: #000 url('IMG_20260127_173130.jpg') no-repeat center center fixed;
@@ -29,11 +23,11 @@
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
-            overflow-x: auto; /* ডেস্কটপ ভিউতে স্ক্রল করার জন্য */
-            min-width: 1200px; /* ফিক্সড উইথ যাতে লেআউট না নড়ে */
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* Fixed Navigation */
+        /* Navigation - Small and Clean like Screenshot */
         .header-nav {
             position: fixed;
             top: 10px;
@@ -41,93 +35,113 @@
             transform: translateX(-50%);
             z-index: 1000;
             display: flex;
-            gap: 10px;
-            width: auto;
+            gap: 6px;
+            width: 90%;
             justify-content: center;
         }
 
         .mini-btn {
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 145, 0, 0.3);
+            padding: 4px 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--theme-color);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 8px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: 0.3s;
-            white-space: nowrap;
         }
 
-        .mini-btn:hover { background: var(--theme-color); color: black; }
-
-        /* Symmetrical Hero & Footer */
-        .hero-header, footer {
-            background: var(--header-footer-bg);
+        /* Hero Title */
+        .hero-header {
+            padding: 80px 20px 30px 20px;
             text-align: center;
-            border: 1px solid #222;
         }
-        .hero-header { padding: 90px 20px 50px 20px; border-top: none; }
-        footer { padding: 40px 20px; border-bottom: none; font-size: 14px; color: #666; }
-
         .hero-header h1 {
-            font-size: 4rem;
+            font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(to bottom, #fff, var(--theme-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ff9100; /* Bright like screenshot 1 */
             text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
-        /* Section Titles */
-        .section-hero { padding: 40px 20px 10px 20px; text-align: center; }
-        .section-hero h2 { font-size: 2rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 5px; }
+        /* Section Headings */
+        .section-hero { padding: 30px 10px 15px 10px; text-align: center; }
+        .section-hero h2 { 
+            font-size: 20px; 
+            color: #ff9100; 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
 
-        /* Grid Setup - Fixed Desktop Look */
+        /* 2-Column Grid Like your Photos */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* ফিক্সড ৩ কলাম */
-            gap: 25px;
-            padding: 30px 50px;
-            max-width: 1200px;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px;
+            padding: 0 12px 30px 12px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Song Card */
+        /* Song Card - Compact & Clean */
         .song-card {
             background: var(--card-bg);
             border-radius: 12px;
-            border: 1px solid rgba(255, 145, 0, 0.1);
             overflow: hidden;
-            transition: 0.3s ease;
+            border: 1px solid rgba(255, 145, 0, 0.2);
+            display: flex;
+            flex-direction: column;
         }
-        .song-card:hover { border-color: var(--theme-color); transform: scale(1.02); }
 
+        /* Video Wrapper - Play button fix */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%;
+            padding-top: 56.25%; /* 16:9 ratio */
             background: #000;
         }
 
-        .video-wrapper .yt-player, 
-        .video-wrapper iframe {
+        /* প্লে বাটন বড় হওয়া রোধ করতে এখানে ফিক্স করা হয়েছে */
+        .video-wrapper iframe, 
+        .video-wrapper .yt-player {
             position: absolute;
             top: 0;
             left: 0;
             width: 100% !important;
             height: 100% !important;
-            border: none;
+            border: 0;
+            object-fit: cover;
         }
 
-        .song-info { padding: 15px; text-align: left; border-top: 1px solid #222; }
-        .song-title { font-size: 14px; font-weight: 700; color: #fff; }
+        .song-info { 
+            padding: 8px 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .song-title { 
+            font-size: 10px; 
+            font-weight: 700; 
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
 
-        footer a { color: #888; text-decoration: none; margin: 0 15px; }
-        .copyright-tag { margin-top: 25px; opacity: 0.5; }
-        section { scroll-margin-top: 100px; }
+        /* Footer Info */
+        footer {
+            background: rgba(0,0,0,0.9);
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #111;
+        }
+        .footer-links { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 5px; }
+        footer p { font-size: 11px; color: #666; }
+        .copyright-tag { margin-top: 15px; opacity: 0.3; font-size: 9px !important; }
 
+        section { scroll-margin-top: 60px; }
     </style>
 </head>
 <body>
@@ -148,13 +162,13 @@
         <div class="grid-container">
             <div class="song-card">
                 <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo?si=rK-wzXZBo8mItT1T"></div>
+                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
                 <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4?si=HEGUdEFto05i6IoT"></div>
+                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div>
                 </div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
@@ -198,11 +212,11 @@
     </section>
 
     <footer>
-        <div style="margin-bottom: 20px;">
-           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>      |     <a href="mailto:support@fahix.com">support@fahix.com</a>
+        <div class="footer-links">
+           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>  |  <a href="mailto:support@fahix.com">support@fahix.com</a>
         </div>
         <p>Chattogram, Bangladesh</p>
-        <p class="copyright-tag">© 31-01-2026 = 11:25 AM  Fahim Official ✔️ All Rights Reserved </p>
+        <p class="copyright-tag">© 31-01-2026 = 11:25 AM Fahim Official ✔️ All Rights Reserved</p>
     </footer>
 
     <script>
@@ -226,7 +240,12 @@
                 if (videoId) {
                     var player = new YT.Player(div, {
                         videoId: videoId,
-                        playerVars: { 'modestbranding': 1, 'rel': 0 },
+                        playerVars: { 
+                            'modestbranding': 1, 
+                            'rel': 0,
+                            'showinfo': 0,
+                            'autohide': 1
+                        },
                         events: { 'onStateChange': onPlayerStateChange }
                     });
                     players.push(player);
@@ -243,4 +262,4 @@
         }
     </script>
 </body>
-    </html>
+                                                                                                      </html>
