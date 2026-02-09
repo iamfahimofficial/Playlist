@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FBin's Playlist | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -24,26 +24,12 @@
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            -webkit-text-size-adjust: 100%;
         }
 
-        /* অটো ক্রোম ওপেন করার মেসেজ বক্স */
-        #browser-alert {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: #ff9100;
-            color: black;
-            text-align: center;
-            padding: 10px;
-            z-index: 9999;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
+        /* Fixed Navigation */
         .header-nav {
             position: fixed;
-            top: 40px; /* এলার্ট বক্সের জন্য একটু নিচে নামানো */
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
@@ -51,29 +37,35 @@
             gap: 5px;
             width: 95%;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .mini-btn {
-            padding: 6px 10px;
+            padding: 6px 12px;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: bold;
             text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        .hero-header {
+        .mini-btn:hover { background: var(--theme-color); color: black; }
+
+        /* Symmetrical Hero & Footer */
+        .hero-header, footer {
             background: var(--header-footer-bg);
-            padding: 100px 20px 40px 20px;
             text-align: center;
-            border-bottom: 1px solid #222;
+            border: 1px solid #222;
         }
+        .hero-header { padding: 70px 20px 40px 20px; border-top: none; }
+        footer { padding: 40px 20px; border-bottom: none; font-size: 12px; color: #666; }
 
         .hero-header h1 {
-            font-size: 24px;
+            font-size: clamp(1.8rem, 6vw, 3rem);
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
@@ -81,61 +73,58 @@
             text-transform: uppercase;
         }
 
+        /* Section Titles */
         .section-hero { padding: 30px 20px 0px 20px; text-align: center; }
-        .section-hero h2 { font-size: 20px; color: var(--theme-color); text-transform: uppercase; letter-spacing: 3px; font-weight: 900; }
+        .section-hero h2 { font-size: 1.5rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; }
 
-        /* হুবহু স্ক্রিনশটের মত ২ কলাম ডিজাইন */
+        /* Grid Setup */
         .grid-container {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            justify-content: space-between;
-            padding: 20px 10px;
-            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 30px 15px;
+            max-width: 1250px;
             margin: 0 auto;
         }
 
+        /* Song Card - Locked Size */
         .song-card {
-            width: 48% !important; 
-            margin-bottom: 15px;
             background: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 145, 0, 0.2);
-            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 145, 0, 0.1);
+            overflow: hidden; /* বর্ডারের বাইরে কিছু যাবে না */
+            transition: 0.3s ease;
         }
+        .song-card:hover { border-color: var(--theme-color); }
 
+        /* Video Wrapper - Locked Aspect Ratio */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
             background: #000;
         }
 
-        .video-wrapper iframe, .video-wrapper .yt-player {
+        /* This ensures the Video/Iframe stays INSIDE the box */
+        .video-wrapper .yt-player, 
+        .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0; width: 100% !important; height: 100% !important;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
             border: none;
         }
 
-        .song-info { padding: 8px; text-align: left; border-top: 1px solid #222; background: #0a0a0a; }
-        .song-title { font-size: 10px; font-weight: 700; color: #fff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .song-info { padding: 12px; text-align: left; border-top: 1px solid #222; }
+        .song-title { font-size: 13px; font-weight: 700; color: #fff; }
 
-        footer {
-            background: var(--header-footer-bg);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid #222;
-            font-size: 11px;
-            color: #777;
-        }
-
-        footer a { color: #999; text-decoration: none; margin: 0 8px; }
-        .copyright-tag { margin-top: 20px; opacity: 0.5; }
+        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        .copyright-tag { margin-top: 20px; opacity: 0.4; }
+        section { scroll-margin-top: 60px; }
     </style>
 </head>
 <body>
-
-    <div id="browser-alert">সেরা অভিজ্ঞতার জন্য উপরের ৩ ডটে ক্লিক করে 'Open in Chrome' দিন!</div>
 
     <nav class="header-nav">
         <a href="index.html" class="mini-btn">HOME</a>
@@ -152,11 +141,15 @@
         <div class="section-hero"><h2>ATTENTION</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo?si=rK-wzXZBo8mItT1T"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4?si=HEGUdEFto05i6IoT"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
         </div>
@@ -166,31 +159,47 @@
         <div class="section-hero"><h2>HAPPINESS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #2</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="emotions">
+        <div class="section-hero"><h2>EMOTIONS</h2></div>
+        <div class="grid-container">
+            <div class="song-card">
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div>
+                </div>
+                <div class="song-info"><span class="song-title">Deep Emotions #1</span></div>
+            </div>
+            <div class="song-card">
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div>
+                </div>
+                <div class="song-info"><span class="song-title">Deep Emotions #2</span></div>
             </div>
         </div>
     </section>
 
     <footer>
         <div style="margin-bottom: 20px;">
-           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a> | <a href="mailto:support@fahix.com">support@fahix.com</a>
+           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>      |     <a href="mailto:support@fahix.com">support@fahix.com</a>
         </div>
         <p>Chattogram, Bangladesh</p>
-        <p class="copyright-tag">© 31-01-2026 = 11:25 AM Fahim Official ✔️ All Rights Reserved </p>
+        <p class="copyright-tag">© 31-01-2026 = 11:25 AM  Fahim Official ✔️ All Rights Reserved </p>
     </footer>
 
     <script>
-        // ফেসবুক ব্রাউজার ডিটেক্ট করা
-        var ua = navigator.userAgent || navigator.vendor || window.opera;
-        if ((ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1)) {
-            document.getElementById('browser-alert').style.display = 'block';
-        }
-
         function extractVideoID(url) {
             var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
             var match = url.match(regExp);
@@ -204,16 +213,28 @@
 
         var players = [];
         function onYouTubeIframeAPIReady() {
-            document.querySelectorAll('.yt-player').forEach(function(div) {
-                var videoId = extractVideoID(div.getAttribute('data-url'));
+            var playerDivs = document.querySelectorAll('.yt-player');
+            playerDivs.forEach(function(div) {
+                var videoUrl = div.getAttribute('data-url');
+                var videoId = extractVideoID(videoUrl);
                 if (videoId) {
-                    players.push(new YT.Player(div, {
+                    var player = new YT.Player(div, {
                         videoId: videoId,
-                        playerVars: { 'modestbranding': 1, 'rel': 0, 'playsinline': 1 }
-                    }));
+                        playerVars: { 'modestbranding': 1, 'rel': 0 },
+                        events: { 'onStateChange': onPlayerStateChange }
+                    });
+                    players.push(player);
                 }
             });
         }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                players.forEach(function(player) {
+                    if (player !== event.target) { player.pauseVideo(); }
+                });
+            }
+        }
     </script>
 </body>
-    </html>
+                                           </html>
