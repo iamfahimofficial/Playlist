@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FBin's Playlist | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -24,6 +24,7 @@
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%; /* ফেসবুক অ্যাপে টেক্সট ঠিক রাখার জন্য */
         }
 
         /* Fixed Navigation */
@@ -40,27 +41,28 @@
         }
 
         .mini-btn {
-            padding: 6px 10px;
+            padding: 6px 12px;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* Hero Header */
-        .hero-header {
+        /* Symmetrical Hero & Footer */
+        .hero-header, footer {
             background: var(--header-footer-bg);
-            padding: 80px 20px 40px 20px;
             text-align: center;
-            border-bottom: 1px solid #222;
+            border: 1px solid #222;
         }
+        .hero-header { padding: 80px 20px 40px 20px; border-top: none; }
+        footer { padding: 40px 20px; border-bottom: none; font-size: 11px; color: #666; }
 
         .hero-header h1 {
-            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 6vw, 3rem);
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
@@ -68,57 +70,56 @@
             text-transform: uppercase;
         }
 
-        .section-hero { padding: 30px 20px 10px 20px; text-align: center; }
-        .section-hero h2 { font-size: 1.3rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 3px; font-weight: 900; }
+        .section-hero { padding: 30px 20px 0px 20px; text-align: center; }
+        .section-hero h2 { font-size: 1.3rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; }
 
-        /* Force 2 Columns for Facebook App & Mobile */
+        /* Grid Setup - Force 2 Columns Everywhere */
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr) !important; /* স্ক্রিনশটের মতো ২টি কলাম ফিক্স করা হলো */
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important; /* ফেসবুক অ্যাপেও ২টি কলাম থাকবে */
             gap: 12px;
-            padding: 20px 10px;
-            max-width: 1200px;
+            padding: 25px 10px;
+            max-width: 1250px;
             margin: 0 auto;
         }
 
         .song-card {
             background: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 145, 0, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 145, 0, 0.15);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            transition: 0.3s ease;
         }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
+            padding-top: 56.25%; /* 16:9 স্ট্যান্ডার্ড সাইজ */
             background: #000;
         }
 
-        .video-wrapper iframe, .video-wrapper div {
+        .video-wrapper .yt-player, 
+        .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0; width: 100% !important; height: 100% !important;
+            top: 0; left: 0;
+            width: 100% !important;
+            height: 100% !important;
             border: none;
         }
 
         .song-info { padding: 10px; text-align: left; border-top: 1px solid #222; background: #0a0a0a; }
         .song-title { font-size: 11px; font-weight: 700; color: #fff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        footer {
-            background: var(--header-footer-bg);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid #222;
-            font-size: 11px;
-            color: #777;
-        }
-
-        footer a { color: #999; text-decoration: none; margin: 0 8px; }
-        .copyright-tag { margin-top: 20px; opacity: 0.5; }
+        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        .copyright-tag { margin-top: 20px; opacity: 0.4; }
         section { scroll-margin-top: 60px; }
+
+        /* মোবাইল ব্রাউজারে সাইজ ঠিক রাখার জন্য */
+        @media screen and (max-width: 400px) {
+            .grid-container { gap: 8px; }
+            .song-title { font-size: 10px; }
+            .section-hero h2 { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
@@ -138,11 +139,15 @@
         <div class="section-hero"><h2>ATTENTION</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
         </div>
@@ -152,11 +157,15 @@
         <div class="section-hero"><h2>HAPPINESS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Happy Vibe #2</span></div>
             </div>
         </div>
@@ -166,11 +175,15 @@
         <div class="section-hero"><h2>EMOTIONS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Deep Emotions #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div></div>
+                <div class="video-wrapper">
+                    <div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div>
+                </div>
                 <div class="song-info"><span class="song-title">Deep Emotions #2</span></div>
             </div>
         </div>
@@ -178,10 +191,10 @@
 
     <footer>
         <div style="margin-bottom: 20px;">
-           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a> | <a href="mailto:support@fahix.com">support@fahix.com</a>
+           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>      |     <a href="mailto:support@fahix.com">support@fahix.com</a>
         </div>
         <p>Chattogram, Bangladesh</p>
-        <p class="copyright-tag">© 31-01-2026 = 11:25 AM Fahim Official ✔️ All Rights Reserved</p>
+        <p class="copyright-tag">© 31-01-2026 = 11:25 AM  Fahim Official ✔️ All Rights Reserved </p>
     </footer>
 
     <script>
@@ -198,16 +211,32 @@
 
         var players = [];
         function onYouTubeIframeAPIReady() {
-            document.querySelectorAll('.yt-player').forEach(function(div) {
-                var videoId = extractVideoID(div.getAttribute('data-url'));
+            var playerDivs = document.querySelectorAll('.yt-player');
+            playerDivs.forEach(function(div) {
+                var videoUrl = div.getAttribute('data-url');
+                var videoId = extractVideoID(videoUrl);
                 if (videoId) {
-                    players.push(new YT.Player(div, {
+                    var player = new YT.Player(div, {
                         videoId: videoId,
-                        playerVars: { 'modestbranding': 1, 'rel': 0, 'playsinline': 1 }
-                    }));
+                        playerVars: { 
+                            'modestbranding': 1, 
+                            'rel': 0, 
+                            'playsinline': 1 // ফেসবুক অ্যাপের ভেতরে প্লে হওয়ার জন্য
+                        },
+                        events: { 'onStateChange': onPlayerStateChange }
+                    });
+                    players.push(player);
                 }
             });
         }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                players.forEach(function(player) {
+                    if (player !== event.target) { player.pauseVideo(); }
+                });
+            }
+        }
     </script>
 </body>
-                    </html>
+    </html>
