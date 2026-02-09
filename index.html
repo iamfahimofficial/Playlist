@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <meta name="viewport" content="width=1280, initial-scale=0.3, maximum-scale=1.0, user-scalable=no">
     <title>FBin's Playlist | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -15,6 +15,12 @@
             --card-bg: rgba(15, 15, 15, 0.95);
         }
 
+        /* অটো জুম এবং টেক্সট রিসাইজ বন্ধ করার জন্য */
+        html {
+            -webkit-text-size-adjust: 100%;
+            touch-action: pan-x pan-y;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -23,9 +29,8 @@
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
-            overflow-x: hidden;
-            /* ডেস্কটপ লুক নিশ্চিত করতে ন্যূনতম প্রস্থ নির্ধারণ */
-            min-width: 1024px; 
+            overflow-x: auto; /* ডেস্কটপ ভিউতে স্ক্রল করার জন্য */
+            min-width: 1200px; /* ফিক্সড উইথ যাতে লেআউট না নড়ে */
         }
 
         /* Fixed Navigation */
@@ -36,19 +41,19 @@
             transform: translateX(-50%);
             z-index: 1000;
             display: flex;
-            gap: 10px; /* গ্যাপ সামান্য বাড়ানো হয়েছে */
-            width: auto; /* ফিক্সড উইথ তুলে দেওয়া হয়েছে */
+            gap: 10px;
+            width: auto;
             justify-content: center;
         }
 
         .mini-btn {
-            padding: 8px 20px;
+            padding: 10px 20px;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 11px; /* ডেস্কটপ সাইটে সামান্য বড় ফন্ট ভালো লাগে */
+            font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
             transition: 0.3s;
@@ -63,11 +68,11 @@
             text-align: center;
             border: 1px solid #222;
         }
-        .hero-header { padding: 80px 20px 50px 20px; border-top: none; }
-        footer { padding: 40px 20px; border-bottom: none; font-size: 13px; color: #666; }
+        .hero-header { padding: 90px 20px 50px 20px; border-top: none; }
+        footer { padding: 40px 20px; border-bottom: none; font-size: 14px; color: #666; }
 
         .hero-header h1 {
-            font-size: 3.5rem; /* ফিক্সড বড় সাইজ */
+            font-size: 4rem;
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
@@ -77,14 +82,14 @@
 
         /* Section Titles */
         .section-hero { padding: 40px 20px 10px 20px; text-align: center; }
-        .section-hero h2 { font-size: 1.8rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 5px; }
+        .section-hero h2 { font-size: 2rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 5px; }
 
-        /* Grid Setup - ডেস্কটপ লেআউটের জন্য ৩ কলাম ফিক্সড করার চেষ্টা */
+        /* Grid Setup - Fixed Desktop Look */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* মোবাইলেও ৩ কলাম দেখাবে ডেস্কটপ সাইটের মতো */
+            grid-template-columns: repeat(3, 1fr); /* ফিক্সড ৩ কলাম */
             gap: 25px;
-            padding: 30px 40px;
+            padding: 30px 50px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -97,7 +102,7 @@
             overflow: hidden;
             transition: 0.3s ease;
         }
-        .song-card:hover { border-color: var(--theme-color); transform: translateY(-5px); }
+        .song-card:hover { border-color: var(--theme-color); transform: scale(1.02); }
 
         .video-wrapper {
             position: relative;
@@ -121,14 +126,8 @@
 
         footer a { color: #888; text-decoration: none; margin: 0 15px; }
         .copyright-tag { margin-top: 25px; opacity: 0.5; }
-        section { scroll-margin-top: 80px; }
+        section { scroll-margin-top: 100px; }
 
-        /* ছোট স্ক্রিনেও যেন গ্রিড ভেঙে না যায় তার জন্য মিডিয়া কুয়েরি পরিবর্তন */
-        @media (max-width: 1024px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr); /* খুব ছোট স্ক্রিনে অন্তত ২ কলাম থাকবে */
-            }
-        }
     </style>
 </head>
 <body>
@@ -244,4 +243,4 @@
         }
     </script>
 </body>
-                    </html>
+    </html>
