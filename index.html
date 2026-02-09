@@ -24,6 +24,7 @@
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* Fixed Navigation */
@@ -53,16 +54,15 @@
             transition: 0.3s;
         }
 
-        .mini-btn:hover { background: var(--theme-color); color: black; }
+        .mini-btn:hover { background: var(--theme-color); color: black; box-shadow: 0 0 8px var(--theme-color); }
 
         /* Symmetrical Hero & Footer */
-        .hero-header, footer {
+        .hero-header {
             background: var(--header-footer-bg);
+            padding: 70px 20px 40px 20px;
             text-align: center;
-            border: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
-        .hero-header { padding: 70px 20px 40px 20px; border-top: none; }
-        footer { padding: 40px 20px; border-bottom: none; font-size: 12px; color: #666; }
 
         .hero-header h1 {
             font-size: clamp(1.8rem, 6vw, 3rem);
@@ -71,13 +71,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* Section Titles */
         .section-hero { padding: 30px 20px 0px 20px; text-align: center; }
-        .section-hero h2 { font-size: 1.5rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; }
+        .section-hero h2 { font-size: 1.5rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; font-weight: 900; }
 
-        /* Grid Setup */
+        /* Grid - Desktop Style maintained for App View */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -87,39 +88,46 @@
             margin: 0 auto;
         }
 
-        /* Song Card - Locked Size */
         .song-card {
             background: var(--card-bg);
             border-radius: 12px;
             border: 1px solid rgba(255, 145, 0, 0.1);
-            overflow: hidden; /* বর্ডারের বাইরে কিছু যাবে না */
+            overflow: hidden;
             transition: 0.3s ease;
         }
-        .song-card:hover { border-color: var(--theme-color); }
 
-        /* Video Wrapper - Locked Aspect Ratio */
+        .song-card:hover { border-color: var(--theme-color); transform: translateY(-5px); }
+
+        /* Video Wrapper - Correcting Aspect Ratio for Apps */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* Fixed 16:9 Ratio */
+            height: 0;
             background: #000;
         }
 
-        /* This ensures the Video/Iframe stays INSIDE the box */
-        .video-wrapper .yt-player, 
-        .video-wrapper iframe {
+        .video-wrapper iframe, .video-wrapper div {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
+            top: 0; left: 0; width: 100% !important; height: 100% !important;
             border: none;
         }
 
-        .song-info { padding: 12px; text-align: left; border-top: 1px solid #222; }
-        .song-title { font-size: 13px; font-weight: 700; color: #fff; }
+        .song-info { padding: 12px; text-align: left; border-top: 1px solid #222; background: #0a0a0a; }
+        .song-title { font-size: 13px; font-weight: 700; color: #fff; display: block; }
 
-        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        /* Symmetrical Footer */
+        footer {
+            background: var(--header-footer-bg);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 12px;
+            color: #666;
+        }
+
+        footer a { color: #888; text-decoration: none; margin: 0 10px; transition: 0.3s; }
+        footer a:hover { color: var(--theme-color); }
         .copyright-tag { margin-top: 20px; opacity: 0.4; }
         section { scroll-margin-top: 60px; }
     </style>
@@ -141,15 +149,11 @@
         <div class="section-hero"><h2>ATTENTION</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo?si=rK-wzXZBo8mItT1T"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo?si=rK-wzXZBo8mItT1T"></div></div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4?si=HEGUdEFto05i6IoT"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4?si=HEGUdEFto05i6IoT"></div></div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
         </div>
@@ -159,15 +163,11 @@
         <div class="section-hero"><h2>HAPPINESS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div></div>
                 <div class="song-info"><span class="song-title">Happy Vibe #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div></div>
                 <div class="song-info"><span class="song-title">Happy Vibe #2</span></div>
             </div>
         </div>
@@ -177,15 +177,11 @@
         <div class="section-hero"><h2>EMOTIONS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div></div>
                 <div class="song-info"><span class="song-title">Deep Emotions #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div></div>
                 <div class="song-info"><span class="song-title">Deep Emotions #2</span></div>
             </div>
         </div>
@@ -196,7 +192,7 @@
            <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>      |     <a href="mailto:support@fahix.com">support@fahix.com</a>
         </div>
         <p>Chattogram, Bangladesh</p>
-        <p class="copyright-tag">© 31-01-2026 = 11:25 AM  Fahim Official ✔️ All Rights Reserved </p>
+        <p class="copyright-tag">© 31-01-2026 = 11:25 AM Fahim Official ✔️ All Rights Reserved </p>
     </footer>
 
     <script>
@@ -220,7 +216,7 @@
                 if (videoId) {
                     var player = new YT.Player(div, {
                         videoId: videoId,
-                        playerVars: { 'modestbranding': 1, 'rel': 0 },
+                        playerVars: { 'modestbranding': 1, 'rel': 0, 'playsinline': 1 },
                         events: { 'onStateChange': onPlayerStateChange }
                     });
                     players.push(player);
@@ -237,4 +233,4 @@
         }
     </script>
 </body>
-    </html>
+                </html>
