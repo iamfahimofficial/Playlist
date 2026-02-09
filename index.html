@@ -24,13 +24,26 @@
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            -webkit-text-size-adjust: 100%; /* ফেসবুক অ্যাপে টেক্সট ঠিক রাখার জন্য */
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* Fixed Navigation */
+        /* অটো ক্রোম ওপেন করার মেসেজ বক্স */
+        #browser-alert {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: #ff9100;
+            color: black;
+            text-align: center;
+            padding: 10px;
+            z-index: 9999;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
         .header-nav {
             position: fixed;
-            top: 10px;
+            top: 40px; /* এলার্ট বক্সের জন্য একটু নিচে নামানো */
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
@@ -41,28 +54,26 @@
         }
 
         .mini-btn {
-            padding: 6px 12px;
+            padding: 6px 10px;
             background: rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(255, 145, 0, 0.3);
             border-radius: 50px;
             color: var(--theme-color);
             text-decoration: none;
-            font-size: 9px;
+            font-size: 8px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* Symmetrical Hero & Footer */
-        .hero-header, footer {
+        .hero-header {
             background: var(--header-footer-bg);
+            padding: 100px 20px 40px 20px;
             text-align: center;
-            border: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
-        .hero-header { padding: 80px 20px 40px 20px; border-top: none; }
-        footer { padding: 40px 20px; border-bottom: none; font-size: 11px; color: #666; }
 
         .hero-header h1 {
-            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-size: 24px;
             font-weight: 900;
             background: linear-gradient(to bottom, #fff, var(--theme-color));
             -webkit-background-clip: text;
@@ -71,58 +82,60 @@
         }
 
         .section-hero { padding: 30px 20px 0px 20px; text-align: center; }
-        .section-hero h2 { font-size: 1.3rem; color: var(--theme-color); text-transform: uppercase; letter-spacing: 4px; }
+        .section-hero h2 { font-size: 20px; color: var(--theme-color); text-transform: uppercase; letter-spacing: 3px; font-weight: 900; }
 
-        /* Grid Setup - Force 2 Columns Everywhere */
+        /* হুবহু স্ক্রিনশটের মত ২ কলাম ডিজাইন */
         .grid-container {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important; /* ফেসবুক অ্যাপেও ২টি কলাম থাকবে */
-            gap: 12px;
-            padding: 25px 10px;
-            max-width: 1250px;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: space-between;
+            padding: 20px 10px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .song-card {
+            width: 48% !important; 
+            margin-bottom: 15px;
             background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 145, 0, 0.15);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 145, 0, 0.2);
             overflow: hidden;
-            transition: 0.3s ease;
         }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 স্ট্যান্ডার্ড সাইজ */
+            padding-bottom: 56.25%;
+            height: 0;
             background: #000;
         }
 
-        .video-wrapper .yt-player, 
-        .video-wrapper iframe {
+        .video-wrapper iframe, .video-wrapper .yt-player {
             position: absolute;
-            top: 0; left: 0;
-            width: 100% !important;
-            height: 100% !important;
+            top: 0; left: 0; width: 100% !important; height: 100% !important;
             border: none;
         }
 
-        .song-info { padding: 10px; text-align: left; border-top: 1px solid #222; background: #0a0a0a; }
-        .song-title { font-size: 11px; font-weight: 700; color: #fff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .song-info { padding: 8px; text-align: left; border-top: 1px solid #222; background: #0a0a0a; }
+        .song-title { font-size: 10px; font-weight: 700; color: #fff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        footer a { color: #888; text-decoration: none; margin: 0 10px; }
-        .copyright-tag { margin-top: 20px; opacity: 0.4; }
-        section { scroll-margin-top: 60px; }
-
-        /* মোবাইল ব্রাউজারে সাইজ ঠিক রাখার জন্য */
-        @media screen and (max-width: 400px) {
-            .grid-container { gap: 8px; }
-            .song-title { font-size: 10px; }
-            .section-hero h2 { font-size: 1.1rem; }
+        footer {
+            background: var(--header-footer-bg);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 11px;
+            color: #777;
         }
+
+        footer a { color: #999; text-decoration: none; margin: 0 8px; }
+        .copyright-tag { margin-top: 20px; opacity: 0.5; }
     </style>
 </head>
 <body>
+
+    <div id="browser-alert">সেরা অভিজ্ঞতার জন্য উপরের ৩ ডটে ক্লিক করে 'Open in Chrome' দিন!</div>
 
     <nav class="header-nav">
         <a href="index.html" class="mini-btn">HOME</a>
@@ -139,15 +152,11 @@
         <div class="section-hero"><h2>ATTENTION</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/LKXxNB8iAMo"></div></div>
                 <div class="song-info"><span class="song-title">Charlie Puth - Attention</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/o7In7se2Kl4"></div></div>
                 <div class="song-info"><span class="song-title">Attitude Vibe Track</span></div>
             </div>
         </div>
@@ -157,47 +166,31 @@
         <div class="section-hero"><h2>HAPPINESS</h2></div>
         <div class="grid-container">
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://www.youtube.com/watch?v=pd1flClqNPc"></div></div>
                 <div class="song-info"><span class="song-title">Happy Vibe #1</span></div>
             </div>
             <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div>
-                </div>
+                <div class="video-wrapper"><div class="yt-player" data-url="https://youtu.be/-Hj-4hqUaaI"></div></div>
                 <div class="song-info"><span class="song-title">Happy Vibe #2</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="emotions">
-        <div class="section-hero"><h2>EMOTIONS</h2></div>
-        <div class="grid-container">
-            <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/ExAire1rQpQ"></div>
-                </div>
-                <div class="song-info"><span class="song-title">Deep Emotions #1</span></div>
-            </div>
-            <div class="song-card">
-                <div class="video-wrapper">
-                    <div class="yt-player" data-url="https://youtu.be/dQw4w9WgXcQ"></div>
-                </div>
-                <div class="song-info"><span class="song-title">Deep Emotions #2</span></div>
             </div>
         </div>
     </section>
 
     <footer>
         <div style="margin-bottom: 20px;">
-           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a>      |     <a href="mailto:support@fahix.com">support@fahix.com</a>
+           <a href="mailto:me@fahimofficial.com">me@fahimofficial.com</a> | <a href="mailto:support@fahix.com">support@fahix.com</a>
         </div>
         <p>Chattogram, Bangladesh</p>
-        <p class="copyright-tag">© 31-01-2026 = 11:25 AM  Fahim Official ✔️ All Rights Reserved </p>
+        <p class="copyright-tag">© 31-01-2026 = 11:25 AM Fahim Official ✔️ All Rights Reserved </p>
     </footer>
 
     <script>
+        // ফেসবুক ব্রাউজার ডিটেক্ট করা
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        if ((ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1)) {
+            document.getElementById('browser-alert').style.display = 'block';
+        }
+
         function extractVideoID(url) {
             var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
             var match = url.match(regExp);
@@ -211,31 +204,15 @@
 
         var players = [];
         function onYouTubeIframeAPIReady() {
-            var playerDivs = document.querySelectorAll('.yt-player');
-            playerDivs.forEach(function(div) {
-                var videoUrl = div.getAttribute('data-url');
-                var videoId = extractVideoID(videoUrl);
+            document.querySelectorAll('.yt-player').forEach(function(div) {
+                var videoId = extractVideoID(div.getAttribute('data-url'));
                 if (videoId) {
-                    var player = new YT.Player(div, {
+                    players.push(new YT.Player(div, {
                         videoId: videoId,
-                        playerVars: { 
-                            'modestbranding': 1, 
-                            'rel': 0, 
-                            'playsinline': 1 // ফেসবুক অ্যাপের ভেতরে প্লে হওয়ার জন্য
-                        },
-                        events: { 'onStateChange': onPlayerStateChange }
-                    });
-                    players.push(player);
+                        playerVars: { 'modestbranding': 1, 'rel': 0, 'playsinline': 1 }
+                    }));
                 }
             });
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING) {
-                players.forEach(function(player) {
-                    if (player !== event.target) { player.pauseVideo(); }
-                });
-            }
         }
     </script>
 </body>
