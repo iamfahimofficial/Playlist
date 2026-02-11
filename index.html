@@ -28,49 +28,78 @@
             margin: 0 auto;
         }
 
-        /* --- New Notification Style --- */
-        #browser-notice {
+        /* --- Full Screen Loader / Notification --- */
+        #preloader {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease;
+            z-index: 99999;
+            transition: opacity 0.8s ease;
         }
-        .notice-box {
-            background: #111;
-            border: 2px solid var(--theme-color);
-            padding: 40px;
-            border-radius: 20px;
+
+        .loader-content {
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 145, 0, 0.3);
+            padding: 40px;
+            border: 2px solid var(--theme-color);
+            border-radius: 20px;
+            background: #0a0a0a;
             max-width: 600px;
+            box-shadow: 0 0 50px rgba(255, 145, 0, 0.2);
         }
-        .notice-box i { font-size: 50px; color: var(--theme-color); margin-bottom: 20px; }
-        .notice-box h3 { font-size: 24px; margin-bottom: 15px; color: #fff; text-transform: uppercase; }
-        .notice-box p { font-size: 16px; color: #ccc; line-height: 1.6; }
-        .loader-bar {
+
+        .loader-content i {
+            font-size: 60px;
+            color: var(--theme-color);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .loader-content h2 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .loader-content p {
+            font-size: 18px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .loader-content b {
+            color: var(--theme-color);
+        }
+
+        .progress-container {
             width: 100%;
-            height: 4px;
+            height: 5px;
             background: #222;
-            margin-top: 20px;
+            margin-top: 30px;
             border-radius: 10px;
             overflow: hidden;
         }
-        .loader-progress {
+
+        .progress-bar {
             width: 0%;
             height: 100%;
             background: var(--theme-color);
-            animation: loading 5s linear forwards;
+            animation: fillProgress 5s linear forwards;
         }
-        @keyframes loading {
-            to { width: 100%; }
-        }
-        /* --- Notification End --- */
 
-        /* Fixed Navigation */
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* --- End Loader Style --- */
+
         .header-nav {
             position: fixed;
             top: 10px;
@@ -160,13 +189,13 @@
 </head>
 <body>
 
-    <div id="browser-notice">
-        <div class="notice-box">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <h3>Please Wait 5 Seconds...</h3>
-            <p>ভালো ইন্টারফেস এবং সেরা পারফরম্যান্স পেতে উপরের <b>3-dot (তিনটি ডট)</b> এ ক্লিক করে <b>"Open in Browser"</b> অথবা <b>"Open in Chrome"</b> সিলেক্ট করুন।</p>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+    <div id="preloader">
+        <div class="loader-content">
+            <i class="fa-solid fa-hourglass-start"></i>
+            <h2>Please Wait...</h2>
+            <p>সেরা ইন্টারফেস এবং দ্রুত ভিডিও লোডিং পেতে উপরের <b>3-dot (তিনটি ডট)</b> থেকে <b>"Open in Browser"</b> অথবা <b>"Open in Chrome"</b> সিলেক্ট করুন।</p>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
             </div>
         </div>
     </div>
@@ -281,15 +310,15 @@
     </footer>
 
     <script>
-        // Notification Logic
-        window.addEventListener('load', function() {
+        // Notification removal after exactly 5 seconds
+        window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                var notice = document.getElementById('browser-notice');
-                notice.style.opacity = '0';
+                var preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
                 setTimeout(function() {
-                    notice.style.display = 'none';
-                }, 500);
-            }, 5000);
+                    preloader.style.display = 'none';
+                }, 800);
+            }, 5000); 
         });
 
         function extractVideoID(url) {
@@ -329,4 +358,4 @@
         }
     </script>
 </body>
-            </html>
+                </html>
